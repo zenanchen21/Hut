@@ -2,7 +2,7 @@
 ---
 
 ### Description
-Describe your app here...
+Diamond Equipment Loan System
 
 ### Significant Features/Technology
 The system has the following:
