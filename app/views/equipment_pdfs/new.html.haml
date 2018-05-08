@@ -1,0 +1,11 @@
+- content_for :title, "NEW EQUIPMENT PDF"
+.container
+  %h1 New Equipment PDF
+  %br
+  .row
+    .col-sm-8.col-sm-offset-2
+      = render 'form'
+  %br
+  .row
+    -# = link_to 'Back', equipment_pdfs_path
+    %a.btn{:href => "/equipment_pdfs", :role => "button"} Back

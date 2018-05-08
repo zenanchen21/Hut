@@ -1,0 +1,115 @@
+- content_for :title, "VIEW_FINANCE"
+.container
+  %h1 View Finance
+
+  - if @data["detail"]
+    %h2 #{@data["detail"].equipment.name}
+    %h4 Equipment ID: #{@data["detail"].equipment_id}, #{@data["detail"].detail_id}
+    %p Unit cost: £#{@data["detail"].unit_cost}
+    %p Availability: #{@data["detail"].available}
+    %h4 Vendor Information
+    %p Vendor Name: #{@data["detail"].vendor_name}
+    %p Vendor Tel. No.: #{@data["detail"].vendor_contact}
+    %p Purchase date: #{@data["detail"].purchase_date}
+    %br
+
+    -# Life progress bar
+  - if @data["life_progress"]
+    %h3 LifeSpan
+    .progress
+      .progress-bar.progress-bar-striped.bg-warning{:role => "progressbar", :style => "width: #{@data["life_progress"]}%"} #{@data["life_progress"]}%
+    %p Expiry Date: #{@data["detail"].expire_date}
+    %br
+
+    -# Quantity available for product page
+  - if @data["equipment"]
+    %h2 #{@data["equipment"].name}
+    -# %h4 Equipment ID: #{@data["equipment"].equipment_id}, #{@data["equipment"].detail_id}
+    -# %p Unit cost: £#{ @data["equipment"].each {|d| d.unit_cost} }
+    %p Quantity available: #{ @totsAvailable } / #{ @total }
+    %br
+
+  -# Usage
+  - if @data["usage_count"]
+    %h3 Usage
+    #curve_chart{:style => "width: 900px"}
+    = line_chart @data["usage_count"], xtitle: "Date", ytitle: "Time of Useage (seconds)"
+    %br
+
+  -# Report rate
+  - if @data["report_rate"]
+    %h3 Maintenance Reports Logged
+    #curve_chart{:style => "width: 900px"}
+    = line_chart @data["report_rate"], xtitle: "Date", ytitle: "Number of Reports Logged"
+    %br
+
+  -# Depreciation graph
+  - if @data["depreciation"]
+    %h3 Depreciation Graph
+    = line_chart @data["depreciation"].map { |val|  {name: val[:name], data: val[:data]}}, xtitle: "Date", ytitle: "Value (£)"
+    %br
+
+  - if @data["upc_exp_tableB"]
+    -# Upcoming Expiries table
+    %h3 Upcoming Expiries
+    %table.table-hover{}
+      %thead
+        %tr
+          %th{:style => "width: 33%"} Serial ID
+          %th{:style => "width: 33%"} Expiry Date
+      %tbody
+        - @data["upc_exp_tableB"].each do |equip|
+          %tr{:onclick => "window.location='/finances/#{equip.equipment_id}/#{equip.detail_id}';"}
+          %td #{equip.detail_id}
+          %td #{equip.expire_date}
+    %br
+
+  - if @data["equipment"]
+    -# Serial product list
+    %h3 Items
+    %table.table-hover{}
+      %thead
+        %tr
+          %th{:style => "width: 33%"} Serial ID
+          %th{:style => "width: 33%"} Name
+          %th{:style => "width: 33%"} Availability
+      %tbody
+        - @data["equipment"].detail.each do |equip|
+          %tr{:onclick => "window.location='/finances/#{equip.equipment_id}/#{equip.detail_id}';"}
+            %td #{equip.detail_id}
+            %td #{equip.equipment.name}
+            %td #{equip.available}
+    %br
+
+
+  - if @data["upc_exp_tableA"]
+    -# Upcoming Expiries table
+    %h3 Upcoming Expiries
+    %table.table-hover{}
+      %thead
+        %tr
+          %th{:style => "width: 33%"} Product ID
+          %th{:style => "width: 33%"} Serial ID
+          %th{:style => "width: 33%"} Name
+      %tbody
+        - @data["upc_exp_tableA"].each do |equip|
+          - if @searched
+            %tr{:onclick => "window.location='/#{equip.equipment_id}';"}
+              %td #{equip.equipment_id}
+              %td #{equip.detail_id}
+              %td #{@equipment.where(id: equip.equipment_id)[0].name}
+          - else
+            %tr{:onclick => "window.location='/finances/#{equip.equipment_id}/#{equip.detail_id}';"}
+              %td #{equip.equipment_id}
+              %td #{equip.detail_id}
+              %td #{@equipment.where(id: equip.equipment_id)[0].name}
+    %br
+
+  - if params[:s_id]
+    -# %button.btn.btn-warning{:href => "/finances/#{@data["detail"].equipment_id}", :type => "button"} Warning
+    %a.btn.btn-warning{:href => "/finances/#{@data["detail"].equipment_id}", :role => "button"} Back to Equipment
+    %a.btn.btn-warning{:href => "/equipment/#{@data["detail"].equipment_id}", :role => "button"} Equipment Items
+  - if params[:p_id]
+    - if not params[:s_id]
+      %a.btn.btn-warning{:href => "/equipment/#{@data["equipment"].id}", :role => "button"} Equipment Items
+    %a.btn.btn-warning{:href => "/finances", :role => "button"} Finance Overview

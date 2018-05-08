@@ -1,0 +1,14 @@
+.container
+  %p#notice= notice
+  %h1 PDF Associations
+  %p
+    %b Equipment:
+    = @equipment_pdf.equipment_id
+  %p
+    %b Pdf:
+    = @equipment_pdf.pdf_id
+
+  -# = link_to 'Edit', edit_equipment_pdf_path(@equipment_pdf)
+  %a.btn{:href => "/equipment_pdfs/#{@equipment_pdf.equipment_id}/edit", :role => "button"} Edit
+  -# = link_to 'Back', equipment_pdfs_path
+  %a.btn{:href => "/equipment_pdfs", :role => "button"} Back

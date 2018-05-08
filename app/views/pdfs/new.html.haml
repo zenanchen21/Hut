@@ -1,0 +1,9 @@
+- content_for :title, "NEW PDF"
+.container
+  %h1 New PDF
+  .row
+    .col-sm-8.col-sm-offset-2
+      = render 'form'
+  .row
+    -# = link_to 'Back', pdfs_path
+    %a.btn{:href => "/pdfs", :role => "button"} Back

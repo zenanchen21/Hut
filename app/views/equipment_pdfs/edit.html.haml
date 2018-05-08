@@ -1,0 +1,11 @@
+.container
+  %h1 Editing equipment_pdf
+  .row
+    .col-sm-8.col-sm-offset-2
+      = render 'form'
+  %br
+  .row
+    -# = link_to 'Show', @equipment_pdf
+    %a.btn{:href => "/equipment_pdfs/#{@equipment_pdf.equipment_id}", :role => "button"} Show
+    -# = link_to 'Back', equipment_pdfs_path
+    %a.btn{:href => "/equipment_pdfs", :role => "button"} Back

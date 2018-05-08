@@ -1,0 +1,9 @@
+.container
+  %h1 Editing account
+  %br
+  = render 'form'
+  %br
+  -# = link_to 'Show', @accounts
+  %a.btn{:href => "/accounts/#{@accounts.id}", :role => "button"} Show
+  -# = link_to 'Back', accounts_path
+  %a.btn{:href => "/accounts", :role => "button"} Back

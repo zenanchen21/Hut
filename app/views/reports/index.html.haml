@@ -1,0 +1,23 @@
+- content_for :title, "VIEW_REPORTS"
+.container
+  %h1 Listing reports
+
+  %table.table-hover{}
+    %thead
+      %tr
+        %th Product name : ID
+        %th Loan ID
+        %th Description
+        %th Fixing logs
+        %th Resolved by
+        %th Urgency
+
+    %tbody
+      - @reports.each do |report|
+        %tr{:onclick => "window.location='/reports/#{report[:id]}/edit';"}
+          %td #{report.audit.equipment.name} : #{report.audit.detail.detail_id}
+          %td= report.audit_id
+          %td= report.description
+          %td= report.fixing_logs
+          %td= report.resolved_by
+          %td= report.urgency

@@ -1,0 +1,9 @@
+- content_for :title, "NEW_EQUIPMENT"
+.container
+  %h1 New equipment
+  .row
+    .col-sm-8.col-sm-offset-2
+      = render 'form'
+  %br
+  .row
+    %a.btn{:href => "/equipment", :role => "button"} Back

@@ -1,0 +1,348 @@
+@import 'variables'
+
+html,body
+  height: 100%
+  background: url(asset-path("dust_scratches.png")) repeat 0 0
+  background-color: #ebebeb
+  padding-bottom: 100px
+
+
+h1,h2,h3,h4,h5,p,td,li,b,.control-label,.help-block,.errorExplanation
+  text-shadow: none
+
+ul.nav.navbar-nav
+  li
+    padding-right: 0px
+    padding-left: 0px
+.dropdown-menu
+  width: 100%
+  text-shadow: none
+  text-align: center
+  color: white
+  text-shadow: 0
+
+h1
+  font-weight: bold
+  // font-weight:100
+  color: #ff8000
+  font-size: 6vw
+
+a
+  display: block
+  padding-top: 15px
+  text-shadow: none
+
+
+input
+  .body
+    width: 50%
+
+li
+  display: inline
+  padding-right: 30px
+
+table.table-hover
+  margin: 0px auto
+  color: #1A222A
+  border: 1px solid rgba(255, 255, 255, 0.8)
+  background-color: rgba(255, 255, 255, 0.8)
+  border: 1px solid rgb(255, 255, 255)
+  width: 100%
+
+thead
+  background-color: rgba(109, 100, 121, 0.8)
+
+th
+  text-align: center
+  background-color: #ff8000
+  color: white
+  text-shadow: none
+
+td
+  border-left: 1px solid rgb(255, 255, 255)
+  border-right: 1px solid rgb(255, 255, 255)
+
+td:hover
+  background-color: #c7c0d1
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover
+  background-color: #ff8000
+
+.navbar-inverse
+  .navbar-collapse, .navbar-form
+    border-color: #fff
+
+.navbar-inverse .navbar-toggle
+  border-color: #fff
+
+.myNavBar
+  background-color: #ff8000
+  border-bottom: 2px solid #ebebeb
+
+.navbar-inverse
+  border: 0
+
+.navbar-inverse .navbar-nav > li > a
+  color: white
+  &:hover, &:focus
+    color: #ffb030
+    background-color: transparent
+
+.navbar-inverse .navbar-brand
+  color: white
+  &:hover, &:focus
+    color: #ffecbc
+    background-color: transparent
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus
+  background-color: #cc6600
+
+.container-fluid
+  height: 100%
+
+.container
+  margin-top: 100px
+  padding-bottom: 50px
+  min-height: calc(100% - 00px)
+  .spacer
+    padding-top: 100px
+    margin-top: 17%
+
+.small_container
+  width: 47%
+  margin-top: 25px
+  margin-bottom: 25px
+  display: inline-block
+  background-color: #fff
+  border-style: solid
+  border-width: 2px
+  border-color: #ff8000
+  background-color: transparent
+  .header
+    margin-bottom: 10px
+    background-color: #ff8000
+    h
+      font-size: 20px
+      text-shadow: none
+      color: #fff
+
+.overlay
+    position: fixed
+    display: none
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: rgba(0,0,0,0.5)
+    z-index: 2
+
+.image-container
+  border-top-left-radius: 10px
+  border-top-right-radius: 10px
+  overflow: hidden
+  height: 250px
+  padding: 0
+  background-color: #fff
+  border-width: 1px
+  border-color: #999
+  border-bottom-style: solid
+  margin: auto
+
+.card
+  border-radius: 10px
+  padding-bottom: 10px
+  // padding-top: 10px
+  background-color: #efefef
+  box-shadow: 8px 8px 5px lightgrey
+  margin-left: 0px
+  margin-bottom: 25px
+  margin-top: 10px
+  // max-width: 300px
+  h4.card-title
+    color: #ff8000
+
+.card:hover
+  box-shadow: 12px 12px 7px lightgrey
+
+.alert.alert-danger
+  z-index: 999
+  background-color: #ff8000
+  color: white
+  text-shadow: none
+  margin: auto
+  position: relative
+  top: 0px
+  padding: 10px
+  width: 90%
+  //max-width: 225px
+
+.right-float
+  float: right
+
+.col-sm-3
+  margin-left: 0px
+
+.col-sm-9
+  padding: 30px
+  border-style: solid
+  border-width: 2px
+  border-color: #ff8000
+  hr
+    border-color: #ff8000
+
+.btn
+  background-color: #ff8000
+  color: #fff
+  &:hover, &:focus
+    background-color: #ff8000
+    color: #ffecbc
+
+.text-center#2
+  min-height: calc(100% - 50px)
+
+.orangeBar
+  margin-left: -5%
+  width: 110%
+  background-color: #ff8000
+  min-height: 60%
+.orangeBar2
+  margin-left: -5%
+  width: 110%
+  background-color: #ff8000
+  min-height: 100px
+
+.table-hover
+  th
+    border-style: solid
+    border-width: 2px
+    border-color: #ff8000
+    font-size: 20px
+    font-weight: normal
+
+.table-hover tbody tr:hover
+  td, th
+    background-color: #ffc184
+
+.modal
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+.dropdown-menu
+  background-color: #ff8000
+
+// On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size)
+@media (max-width: 1100px)
+  .small_container
+    width: 100%
+
+  table.table-hover
+    width: 100%
+
+  .navbar-header
+    float: none
+
+  .navbar-left,.navbar-right
+    float: none !important
+
+  .navbar-toggle
+    display: block
+
+  .navbar-collapse
+    border-top: 1px solid transparent
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)
+
+  .navbar-fixed-top
+    top: 0
+    border-width: 0 0 1px
+
+  .navbar-collapse.collapse
+    display: none!important
+
+  .navbar-nav
+    float: none!important
+    margin-top: 7.5px
+
+  .navbar-nav>li
+    float: none
+
+  .navbar-nav>li>a
+    padding-top: 10px
+    padding-bottom: 10px
+
+  .collapse.in
+    display: block !important
+
+  h1
+    font-size: 5vw
+
+  .sideBar
+    top: 60px
+    visibility: hidden
+    padding-top: 15px
+    a
+      font-size: 18px
+
+  .nav.navbar-nav.navbar-right
+    width: 100%
+    .dropdown-menu
+      background-color: #ff8000
+    a.dropdown-item
+      text-align: center
+      background-color: #ff8000
+
+#fade
+  margin-top: 25px
+  font-size: 21px
+  size: 1em
+  text-align: center
+  // Safari, Chrome and Opera > 12.1
+  -webkit-animation: fadein 2s
+  // Firefox < 16
+  -moz-animation: fadein 2s
+  // Internet Explorer
+  -ms-animation: fadein 2s
+  // Opera < 12.1
+  -o-animation: fadein 2s
+  animation: fadein 2s
+
+@keyframes fadein
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+
+// Firefox < 16
+@-moz-keyframes fadein
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+
+// Safari, Chrome and Opera > 12.1
+@-webkit-keyframes fadein
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+
+// Internet Explorer
+@-ms-keyframes fadein
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+
+// Opera < 12.1
+@-o-keyframes fadein
+  from
+    opacity: 0
+  to
+    opacity: 1

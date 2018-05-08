@@ -1,0 +1,22 @@
+- content_for :title, 'Log In'
+.container
+  %h1 Log In
+  %br
+  .col-sm-8.col-sm-offset-2
+    .form.form-horizontal
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-group
+          .control-label.col-sm-4
+            = f.label "Username: "
+          .col-sm-8
+            = f.input :username, autofocus: true, :label => false
+        -# %br
+        .form-group
+          .control-label.col-sm-4
+            = f.label "Password: "
+          .col-sm-8
+            = f.input :password, :label => false
+        -# %br
+        .form-group
+          .col-sm-12
+            = submit_button 'Log in'

@@ -1,0 +1,32 @@
+- content_for :title, "VIEW_PDFs"
+
+.container
+  %h1 View/Create PDFs
+  %br
+  .row
+    .form.form-inline
+      = simple_form_for:search, url: '/pdfs/search', method: :post do |f|
+        = f.input :name, placeholder: 'Search Pdfs', label: false
+        = f.submit 'Search', :class => "btn "
+  %br
+  .row
+    %a.btn{:href => "/pdfs/new", :role => "button"} New Pdf
+    - if current_account.admin?
+      %a.btn{:href => "/pdf_types/new", :role => "button"} New Pdf Type
+      %a.btn{:href => "/pdf_types", :role => "button"} View Pdf Types
+
+  %br
+  %table.table-hover
+    %thead
+      %tr
+        %th ID
+        %th Type
+        %th Name
+        %th Description
+    %tbody
+      - @pdfs.each do |pdf|
+        %tr{:onclick => "window.open('/pdfs/#{pdf.id}', '_blank'); "}
+          %td= pdf.id
+          %td= pdf.pdf_type.name
+          %td= pdf.name
+          %td= pdf.description

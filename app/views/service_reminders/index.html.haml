@@ -1,0 +1,15 @@
+.container
+  %h1 Service Reminders
+
+  %table.table-hover
+    %thead
+      %tr
+        %th Detail
+        %th Service date
+        %th
+    %tbody
+      - @service_reminders.each do |service_reminder|
+        %tr
+          %td #{service_reminder.detail.equipment.name} : #{service_reminder.detail.detail_id}
+          %td= service_reminder.created_at.to_date
+          %td= link_to 'Service', edit_service_reminder_path(service_reminder)

@@ -1,0 +1,11 @@
+.container
+  %h1 Add training to product ID: #{params[:p_id]}
+  %a.btn{:href => new_training_path, :role => "button"} New Training
+  %table.table-hover
+    %thead
+      %tr
+        %th Training
+    %tbody
+      - (@trainings).each do |trains|
+        %tr{:onclick => "window.location='/trainings/add_equipment/#{params[:p_id]}/#{trains[:id]}';"}
+          %td #{trains.name}

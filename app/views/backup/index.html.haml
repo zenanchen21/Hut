@@ -1,0 +1,9 @@
+- content_for :title, "BACKUP_PAGE"
+.container
+  %h1 Backup
+  %br
+  .row
+    -# = link_to 'New Details', new_detail_path(:id => @equipment.id)
+    %a.btn{:href => "/equipment", :role => "button"} Backup Database
+    -# = link_to 'Edit', edit_equipment_path(@equipment)
+    %a.btn{:href => "/equipment", :role => "button"} Restore Database

@@ -1,0 +1,52 @@
+- content_for :title, "HOME"
+
+.container.spacer
+  %h1 Diamond Equipment System
+  %br
+  .form.form-inline
+    = simple_form_for:search, url: search_equipment_index_path, method: :post do |f|
+      = f.input :name, placeholder: 'Search Items', label: false
+      = f.submit 'Search', :class => "btn"
+  %br
+  %br
+  %br
+  %br
+  %button.btn{:onclick => "smoothScroll(document.getElementById('2'))", :type => "button"} Learn more
+
+.orangeBar
+
+.container.spacer#2
+  %h1 How to use the System
+  %br
+  %br
+  %br
+  %ul
+    %li Welcome to DES.
+    %br
+    %li If you would like to use a piece of equipment either search the name of the equipment above or go on the View Equipment tab. There you will find another search bar for your convenience and some cards you can flick through to find the piece of equipment you would like to use.
+    %br
+    %li
+    %br
+    %li Once you have selected a piece of equipment scroll through the table to find the serial id that matches the one you are using, after you have selected the right id add an loan to the item, and the processs is complete.
+    %br
+    %li
+    %br
+    %li To view your account to see your current loans, click on your email at the top right, then click my account. Here you can see a table of your loans and be able to fill out a report on any of them.
+    %br
+    %li
+    %br
+    %li To log out, click your email on the top right, and then click log out.
+    %br
+    %li
+    - if current_account.tech?
+      -# %p  Lorem ipsum dolor sit amet, consectetur adintum justo pharetra vel. Vestibulum blandit metus vitae gravida feugiat. In aliquam leo leo. Maecenas vitae sollicitudin purus, sed cursus justo. Suspendisse ac ipsum id nisl commodo finibus. Nunc noctus hendrerit, ex magna mattis diam, quis feugiat turpis elit vitae mi.
+      -# %br
+    - if current_account.admin?
+      -# %p  Lorem ipsum dolor sit amet, consectetur adiuismod leo, ut condimentum justo pharetra vel. Vestlum blan nulla in dui ultricies lobortis ac at ipsum. Aliquam vitae ex vitae risus mattis convallis nec finibus massa. M
+      -# %br
+  %br
+  %button.btn{:onclick => "smoothScroll(document.getElementById('1'))", :type => "button"} Back to top
+  %br
+  %br
+
+.orangeBar2

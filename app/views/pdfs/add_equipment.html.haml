@@ -1,0 +1,16 @@
+- content_for :title, "ADD_PDF_ID:#{params[:e_id]}"
+.container
+  .row
+    %h1 Add PDF to equipment ID: #{params[:e_id]}
+    %a.btn{:href => new_pdf_path, :role => "button"} New Pdf
+    -#
+    %a.btn{:href => "/equipment/#{params[:e_id]}", :role => "button"} Back
+  %br
+  %table.table-hover
+    %thead
+      %tr
+        %th PDFs
+    %tbody
+      - (@pdfs).each do |pdf|
+        %tr{:onclick => "window.location='/pdfs/add_equipment/#{params[:e_id]}/#{pdf[:id]}';"}
+          %td #{pdf.name}

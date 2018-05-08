@@ -1,0 +1,17 @@
+- content_for :title, "EDIT ACCOUNT"
+
+%h2 Edit Account
+
+- collection = %w(These Are Some Options)
+
+= simple_form_for :form_examples do |f|
+  = f.input :Forename, as: :string
+  = f.input :Surname, as: :string
+  = f.input :Change_Password, as: :string
+  = f.input :Repeat_Password, as: :string
+  = f.input :Are_you_human, as: :boolean
+
+!!!
+%html{:lang => "en"}
+  %form{:action => "home"}
+    %input{:type => "submit", :value => "Confirm", :background => "#ffff00" }/

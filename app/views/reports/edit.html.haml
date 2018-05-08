@@ -1,0 +1,8 @@
+.container
+  %h1 Editing report for #{@detail.equipment.name} : #{@detail.detail_id}
+
+  = render 'form'
+
+  = link_to 'Show', @report
+  \|
+  = link_to 'Back', reports_path

@@ -1,0 +1,47 @@
+- content_for :title, "VIEW_ITEMS"
+
+- items = ['item 0', 'item 1', 'item 2', 'item 3', 'item 4']
+%body
+  .container
+    %h1 View equipment
+    %br
+    %br
+    .row
+      .col-xs-8.col-xs-offset-2
+        .input-group
+          .input-group-btn.search-panel
+            %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+              %span#search_concept Filter by
+              %span.caret
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#contains"} Contains
+              %li
+                %a{:href => "#its_equal"} It's equal
+              %li
+                %a{:href => "#greather_than"} Greather than >
+              %li
+                %a{:href => "#less_than"} Less than
+              %li.divider
+              %li
+                %a{:href => "#all"} Anything
+          %input#search_param{:name => "search_param", :type => "hidden", :value => "all"}
+            %input.form-control{:name => "x", :placeholder => "Search term...", :type => "text"}
+              %span.input-group-btn
+                %button.btn.btn-default{:type => "button"}
+                  %span.glyphicon.glyphicon-search
+
+  %br
+  %table.table-hover
+    %thead
+      %tr
+        %th Equipment name
+        %th Room Currently in
+        %th col 2
+    %tbody
+      - items.each do |i|
+        %tr{:onclick => "window.location='item?i=#{i} ';"}
+          %td #{i}
+          %td ...
+          %td
+            %span.glyphicon.glyphicon-ok{:style => "color: #ff8000"}

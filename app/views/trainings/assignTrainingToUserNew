@@ -1,0 +1,14 @@
+%h1 New training
+
+= simple_form_for(@training) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+
+  .form-actions
+    = f.button :submit
+
+
+= link_to 'Back', trainings_path

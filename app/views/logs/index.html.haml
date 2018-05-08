@@ -1,0 +1,15 @@
+- content_for :title, "VIEW_LOGS"
+.container
+  %h1 Listing logs
+  %table.table-hover
+    %thead
+      %tr
+        %th Account
+        %th Action
+        %th When
+    %tbody
+      - (@logs).each do |log|
+        %tr
+          %td= log.account_id
+          %td= log.action
+          %td= log.created_at

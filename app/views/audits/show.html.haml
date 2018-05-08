@@ -1,0 +1,9 @@
+%p#notice= notice
+- content_for :title, "LOANS"
+.container
+  %a{:href => "/details/#{@audit.detail[:id]}"} Equipment: #{@audit.detail.equipment.name} : #{@audit.detail[:id]}
+  %a{:href => "/accounts/#{@audit.account[:id]}"} Account: #{@audit.account.username} : #{@audit.account[:id]}
+
+  %h1 Description: #{@audit.description}
+  %h1 From: #{@audit.created_at}
+  %h1 Until: #{@audit.end_time}

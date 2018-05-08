@@ -1,0 +1,2 @@
+module PdfTypesHelper
+end

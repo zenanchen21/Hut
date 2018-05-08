@@ -1,0 +1,74 @@
+-# %p#notice= notice
+-# -# .container
+-# -#   %p
+-# -#     %b loand_id:
+-# -#     = @equipment.detail_id
+-# -#   %p
+-# -#     %b Name:
+-# -#     = @equipment.name
+-# -#
+-# -#   = link_to 'Edit', edit_equipment_path(@equipment)
+-# -#   \|
+-# -#   = link_to 'Back', equipment_index_path
+-# - content_for :title, "EQUIPMENT"
+-# .container
+-#   %h1 Equipment: #{@equipment.id}
+-#   = link_to 'New Details', new_detail_path(:id => @equipment.id)
+-#   = link_to 'Edit', edit_equipment_path(@equipment)
+-#   = link_to 'Add training', "/trainings/add_equipment/#{@equipment.id}"
+-#   .small_container{:style => "float: left"}
+-#     .header
+-#       %h Some info about #{@equipment.name}
+-#     %p #{@equipment.description}
+-#   .small_container{:style => "float: right"}
+-#     %table.table-hover
+-#       %thead
+-#         %tr
+-#           %th Training Required
+-#       %tbody
+-#         - (@equipment.trainings).each do |trains|
+-#           %tr
+-#             %td #{trains.name}
+-#
+-#   .small_container{:style => "width: 100%" }
+-#     .header
+-#       %h Expectant expectancy: #{@equipment.expectant_expectancy} months
+-#     %p  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh nulla, sagittis at imperdiet ut, pharetra nec odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec eget felis in ante aliquet cursus. Quisque ut massa accumsan orci volutpat posuere. Aliquam gravida dui eu augue gravida volutpat. Nulla faucibus ligula at ullamcorper mollis. Vestibulum ornare, risus sit amet porta tincidunt, ante enim porta lacus, eu pellentesque odio elit et magna. Nulla eu lobortis enim. Donec vitae ullamcorper ligula. Donec lacinia egestas libero gravida semper. Morbi a urna egestas, consequat mauris a, fringilla sapien. Nulla blandit felis et augue gravida, vel rutrum quam iaculis. Ut vel euismod orci. Proin pharetra nec justo eu imperdiet.
+-#
+-#
+-# .container{:style => "margin-top: 0"}
+-#   %h1 Equipment list
+-#   .small_container{:style => "width: 100%"}
+-#     %table.table-hover
+-#       %thead
+-#         %tr
+-#           %th Serial ID
+-#           %th Location
+-#           %th Available
+-#       %tbody
+-#         - if @equipmentSorted.size > 0
+-#           - @equipmentSorted.each do |equip|
+-#             %tr{:onclick => "window.location='/details/#{equip[:id]}';"}
+-#               %td #{equip.detail_id}
+-#               %td #{equip.location}
+-#               %td #{equip.available}
+-#         - else
+-#           %tr
+-#             %td
+-#             %td Empty
+-#             %td
+-#
+-#
+-# .container{:style => "margin-top: 0"}
+-#   %h1 Inactive equipment list
+-#   .small_container{:style => "width: 100%"}
+-#     %table.table-hover
+-#       %thead
+-#         %tr
+-#           %th Serial ID
+-#           %th Location
+-#       %tbody
+-#         - @inactive.each do |equip|
+-#           %tr{:onclick => "window.location='/details/#{equip[:id]}';"}
+-#             %td #{equip.detail_id}
+-#             %td #{equip.location}

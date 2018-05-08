@@ -1,0 +1,223 @@
+!!!
+%html
+  %head#1
+    %title DES - #{content_for(:title)}
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    %meta{ :'http-equiv' => 'X-UA-Compatible', content: 'IE=edge' }
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}
+    = stylesheet_link_tag    "application", media: :all
+    = javascript_include_tag "application"
+    = favicon_link_tag '/favicon.ico'
+    = csrf_meta_tags
+    %link{:href => "https://www.w3schools.com/w3css/4/w3.css", :rel => "stylesheet"}/
+
+    -# %nav.navbar.navbar-inverse.navbar-fixed-top
+    %nav.navbar.navbar-inverse.navbar-fixed-top
+      .myNavBar
+        .container-fluid
+          .navbar-header
+            %button.navbar-toggle{"data-target" => "#myNavbar", "data-toggle" => "collapse", :type => "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{:href => "/"} DES
+          #myNavbar.collapse.navbar-collapse
+            - if account_signed_in?
+              %ul.nav.navbar-nav
+                %li
+                  %a{:href => "/equipment"} Equipment
+                %li
+                  %a{:href => "/locations"} Locations
+                - if current_account.tech?
+                  %li
+                    %a{:href => "/accounts"} Accounts
+                  %li
+                    %a{:href => "/pdfs"} PDFs
+                  %li
+                    %a{:href => "/trainings"} Training
+                  -if current_account.tech?
+                    %li
+                      %a.dropdown-item{:href => "/reports"}
+                        Reports
+                    %li
+                      %a{:href => "/service_reminder"} Service Reminders
+
+                  - if current_account.admin?
+                    %ul.nav.navbar-nav.navbar-right
+                      %li.col-md-12
+                        %a.dropdown-toggle{"data-toggle" => "dropdown"} Administrator Pages ▾
+                        .dropdown-menu
+                          %a.dropdown-item{:href => "/logs"}
+                            Logs
+                          %a.dropdown-item{:href => "/finances"}
+                            Finance
+                          %a.dropdown-item{:href => "/detail_requests"}
+                            Item Requests
+
+              - if account_signed_in?
+                %ul.nav.navbar-nav.navbar-right
+                  %li.col-md-12
+                    = link_to '#', data: { toggle: :dropdown }, class: 'dropdown-toggle', role: 'button', 'aria-haspopup' => true, 'aria-expanded' => false do
+                      = fa_icon 'account', text: current_account.email + "  ▾"
+
+                    .dropdown-menu
+                      = link_to destroy_account_session_path, method: :delete, title: "Log out of the system" do
+                        = fa_icon 'sign-out', text: 'Log out'
+
+                      = link_to "/accounts/#{current_account.id}", title: "View your account" do
+                        = fa_icon 'face', text: ' 😑 View account'
+                      - if current_account.admin?
+                        = link_to backup_path, title: "Backup Database" do
+                          = fa_icon 'face', text: 'Backup Database'
+
+                  -# %li.dropdown
+                  -#   = link_to '#', data: { toggle: :dropdown }, class: 'dropdown-toggle', role: 'button', 'aria-haspopup' => true, 'aria-expanded' => false do
+                  -#     = fa_icon 'account', text: current_account.email + "  ▾"
+                  -#     %ul.dropdown-menu
+                  -#       %li
+                  -#         = link_to destroy_account_session_path, method: :delete, title: "Log out of the system" do
+                  -#           = fa_icon 'sign-out', text: 'Log out'
+
+                  -# %li.col-12.px-0
+                  -#   %button.btn.btn-success.btn-block.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  -#     Add Mutual Funds
+                  -#     %sub
+                  -#       %i.fa.fa-angle-down{"aria-hidden" => "true"}
+                  -#   .dropdown-menu.w-100
+                  -#     %a.dropdown-item{:href => "#"} Action
+                  -#     %a.dropdown-item{:href => "#"} Another action
+                  -#     %a.dropdown-item{:href => "#"} Something else here
+                  -#     %a.dropdown-item{:href => "#"} Separated link
+
+    -# %li.dropdown
+    -#   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+    -#     Page 1
+    -#     %span.caret
+    -#       %ul.dropdown-menu
+    -#         %li
+    -#           %a{:href => "#"} Page 1-1
+    -#         %li
+    -#           %a{:href => "#"} Page 1-2
+    -#         %li
+    -#           %a{:href => "#"} Page 1-3
+    -# #mySidenav.sideBar
+    -#   %ul#menu
+    -#     - accountTier = 'Tech'
+    -#     %a{:href => :/} Home
+    -#     %a{:href => :borrowing} Use an item
+    -#     %a{:href => :view_items} View items
+    -#     %a{:href => :view_pdf} View Pdfs
+    -#     - if (accountTier == 'Tech') or (accountTier == 'Admin')
+    -#       %a{:href => :view_accounts} View accounts
+    -#       %a{:href => :view_item_archive} View item archive
+    -#       %a{:href => :view_account_archive} View account archive
+    -#       %a{:href => :splash} Welcome
+    -#     - if accountTier == 'Admin'
+    -#       %a{:href => :view_finance} View finance
+
+
+  %body
+    .container-fluid
+      #content
+      = yield
+
+#passwordModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      %font{:color => "black"}
+        .modal-header
+          %button.close{"data-dismiss" => "modal", :type => "button"} ×
+          %h4.modal-title Forgot My Password
+        .modal-body
+          %form.form-horizontal{:action => "#"}
+            .form-group
+              %label.control-label.col-sm-2{:for => "email"} Email:
+              .col-sm-10
+                %input#email.form-control{:placeholder => "Enter email", :type => "email"}/
+        .modal-footer
+          %button.btn.btn-info{"data-dismiss" => "modal", :type => "submit"} Submit
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
+
+  -# .topBar{ :style => "z-index:1052;" }
+  -#   %li{:style => "float:left;font-size:30px;cursor:pointer"}
+  -#     %span{:onclick => "toggleNav()"} ☰
+  -#   %li{:style => "float:left"}
+  -#     %a.active{:href => "home"} DES
+  -#   .div
+  -#     - loggedIn = false
+  -#     - if !loggedIn
+  -#       %li{:style => "float:right"}
+  -#         %a.btn.btn-info.btn-s{"data-target" => "#otherModal", "data-toggle" => "modal", :type => "button"} Log in
+  -#       #otherModal.modal.fade{:role => "dialog"}
+  -#         .modal-dialogglyphicon.glyphicon-use
+  -#           / Modal content
+  -#           .modal-content
+  -#             .modal-header
+  -#               %button.close{"data-dismiss" => "modal", :type => "button"} ×
+  -#               %font{:color => "black", :size => "3"} Login to DES
+  -#             .modal-body
+  -#               %form{:action => "", :method => "post", :name => "login_form"}
+  -#                 %font{:color => "black"}
+  -#                   %p
+  -#                     %input#email.span3{:name => "eid", :placeholder => "Email", :type => "text"}/
+  -#                   %p
+  -#                     %input.span3{:name => "passwd", :placeholder => "Password", :type => "password"}/
+  -#                   %p
+  -#                     %button.btn.btn-primary{:type => "submit"} Sign in
+  -#                     %a{:href => "#"}Forgot Password?
+
+
+                      // :javascript
+                      //   function toggleNav() {
+                      //      if (document.getElementById("mySidenav").style.visibility == "visible"){
+                      //         closeNav();
+                      //      }
+                      //      else {
+                      //         openNav();
+                      //      }
+                      //   }
+                      //   function openNav() {
+                      //      document.getElementById("mySidenav").style.visibility = "visible";
+                      //   }
+                      //   function closeNav() {
+                      //      document.getElementById("mySidenav").style.visibility = "hidden";
+                      //   }
+
+    -#
+    -#
+    -#
+    -#   -#
+    -#   -#
+    -#   -# %ul.nav.navbar-nav.navbar-left
+    -#   -#   %li
+    -#   -#     DES
+    -#   -# %ul.nav.navbar-nav.navbar-right
+    -#   -#   %li
+    -#   -#     = link_to :root, class: 'nav navbar-nav'  do
+    -#   -#       Log In1D1E26
+    -#   -#   %li
+    -#   -#     = link_to :root, class: 'nav navbar-nav' do
+    -#   -#       Request Account
+    -#
+    -#
+
+         // %nav#main-nav.navbar.navbar-inverse.navbar-fixed-top
+         //   .container
+         //     .navbar-header
+         //       %button.navbar-toggle{ data: { target: ".navbar-collapse", toggle: :collapse, type: :button } }
+         //       = link_to :root, class: 'navbar-brand' do
+         //         DES
+         //       / Declare Variable
+         //       - loggedIn = false
+         //       - if !loggedIn
+         //         %ul.nav.navbar-nav
+         //           %li
+         //             = link_to :root, class: 'nav navbar-nav'  do
+         //               %span.glyphicon.glyphicon-log-in
+         //               Log In
+         //           %li
+         //             = link_to :root, class: ' nav navbar-nav' do
+         //               %span.glyphicon.glyphicon-user
+         //               Request Account

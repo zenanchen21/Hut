@@ -1,0 +1,19 @@
+- content_for :title, "ITEM"
+
+%body
+  .container
+    %h1 Loan history for #{params[:u]}
+    %table.table-hover
+      %thead
+        %tr
+          %th User
+          %th Serial : ID
+          %th Date from
+          %th Date to
+      %tbody
+        - for i in 1..50 do
+          %tr
+            %td Equipment thing #{i}
+            %td #{i}#{i}#{i}#{i} : #{i}
+            %td 01/01/2017
+            %td 02/01/2017

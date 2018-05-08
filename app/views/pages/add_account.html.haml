@@ -1,0 +1,18 @@
+- content_for :title, "Add Account"
+
+.container
+  %h2 Add an account
+
+  - collection = %w(Admin Technician Basic)
+  .middle
+    = simple_form_for :form_examples do |f|
+      = f.input :Forename, as: :string
+      = f.input :Surname, as: :string
+      = f.input :Training, as: :string
+      = f.input :Tier, as: :inline_radio_buttons, collection: collection
+
+
+  !!!
+  %html{:lang => "en"}
+    %form{:action => "home"}
+      %input.btn.btn-success.btn-lg{:type => "submit", :value => "Create", :background => "#ffff00" }/

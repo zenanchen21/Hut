@@ -1,0 +1,101 @@
+%p#notice= notice
+-# .container
+-#   %p
+-#     %b item_id:
+-#     = @equipment.detail_id
+-#   %p
+-#     %b Name:
+-#     = @equipment.name
+-#
+-#   = link_to 'Edit', edit_equipment_path(@equipment)
+-#   \|
+-#   = link_to 'Back', equipment_index_path
+- content_for :title, "EQUIPMENT_#{@equipment.name}"
+.container
+  %h1 Equipment: #{@equipment.id}
+  %br
+  - if current_account.tech?
+    .row
+      -# = link_to 'New Details', new_detail_path(:id => @equipment.id)
+      %a.btn{:href => "/details/new?id=#{@equipment.id}", :role => "button"} New Items
+      -# = link_to 'Edit', edit_equipment_path(@equipment)
+      %a.btn{:href => "/equipment/#{@equipment.id}/edit", :role => "button"} Edit Equipment
+      -# = link_to 'Add training', "/trainings/add_equipment/#{@equipment.id}"
+      %a.btn{:href => "/trainings/add_equipment/#{@equipment.id}", :role => "button"} Add Training
+      -# = link_to 'Add pdf', "/pdfs/add_equipment/#{@equipment.id}"
+      %a.btn{:href => "/pdfs/add_equipment/#{@equipment.id}", :role => "button"} Add PDF
+      -# = link_to 'View Finance', "/finances/#{@equipment.id}"
+      %a.btn{:href => "/finances/#{@equipment.id}", :role => "button"} View Finance
+  .row
+    .small_container{:style => "float: left"}
+      .header
+        %h Some info about #{@equipment.name}
+      - if @equipment.consumable?
+        %p #{@equipment.name}  is a consumable.  #{@equipment.description}
+      - else
+        %p #{@equipment.name}  is not a consumable.  #{@equipment.description}
+    %br
+    .col-md-6
+      %table.table-hover
+        %thead
+          %tr
+            %th{:style => "width 80%"} Training
+            - if @equipment.equipment_trainings.size > 0
+              %th{:style => "width 20%"} Remove
+        %tbody
+          - if @equipment.equipment_trainings.size > 0
+            - (@equipment.equipment_trainings).each do |train|
+              %tr
+                %td #{train.training.name}
+                %td
+                  %a{:href => "/trainings/remove_equipment/#{train.id}"} Remove
+          - else
+            %tr
+              %td Empty
+    %br
+    -# %br
+    .col-md-6
+      %table.table-hover
+        %thead
+          %tr
+            %th Associated PDFs
+        %tbody
+          - if @equipment.pdfs.size > 0
+            - (@equipment.pdfs).each do |pdf|
+              %tr{:onclick => "window.open('/pdfs/#{pdf.id}', '_blank'); "}
+                %td #{pdf.name}
+          - else
+            %tr
+              %td Empty
+  .row
+    %h1 Equipment List
+    %table.table-hover
+      %thead
+        %tr
+          %th Serial ID
+          %th Location
+          %th Available
+      %tbody
+        - if @equipmentActive.size > 0
+          - @equipmentActive.each do |det|
+            %tr{:onclick => "window.location='/details/#{det[:id]}';"}
+              %td #{det.detail_id}
+              %td #{det.location.name}
+              %td #{det.available}
+        - else
+          %tr
+            %td
+            %td Empty
+            %td
+  .row
+    %h1 Inactive equipment list
+    %table.table-hover
+      %thead
+        %tr
+          %th Serial ID
+          %th Location
+      %tbody
+        - @inactive.each do |det|
+          %tr{:onclick => "window.location='/details/#{det[:id]}';"}
+            %td #{det.detail_id}
+            %td #{det.location.name}

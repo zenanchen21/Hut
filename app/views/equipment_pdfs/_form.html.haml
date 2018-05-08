@@ -1,0 +1,19 @@
+= simple_form_for(@equipment_pdf) do |f|
+  = f.error_notification
+
+  .form-inputs.form-horizontal
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Equipment: "
+      .col-sm-8
+        = f.input :equipment_id, :label => false
+    .form-group
+      .control-label.col-sm-4
+        = f.label "PDF: "
+      .col-sm-8
+        = f.input :pdf_id, :label => false
+
+  .form-actions
+    .form-group
+      .col-sm-12
+        = f.button :submit

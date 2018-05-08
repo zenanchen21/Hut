@@ -1,0 +1,58 @@
+- content_for :title, "VIEW_REQUESTS"
+.container
+  %h1 Listing item requests
+
+  %table.table-hover
+    %thead
+      %tr
+        %th Equipment
+        %th Serial ID
+        %th Archived new value
+        %th Approve?
+        %th Reject?
+    %tbody
+      - @detail_requests.each do |detail_request|
+        %tr
+          %td= Detail.find(detail_request.detail_id).equipment.name
+          %td= Detail.find(detail_request.detail_id).detail_id
+          %td= detail_request.archived_new_value
+          %td= link_to 'Approve', "/detail_requests/approve/#{detail_request[:id]}", data: { confirm: 'Are you sure?' }
+          %td= link_to 'Deny', detail_request, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %h1 Equipment requiring approval
+  %table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Description
+        %th Expectant expectancy
+        %th Consumable
+        %th Approve?
+        %th Reject?
+    %tbody
+      - @equipment_requests.each do |equipment_request|
+        %tr
+          %td= equipment_request.name
+          %td= equipment_request.description
+          %td= equipment_request.expectant_expectancy
+          %td= equipment_request.consumable
+          %td= link_to 'Approve', "/detail_requests/approve_equipment/#{equipment_request[:id]}", data: { confirm: 'Are you sure?' }
+          %td= link_to 'Deny', "/detail_requests/remove_equipment/#{equipment_request[:id]}", data: { confirm: 'Are you sure?' }
+
+  %h1 Detail life extensions
+  %table.table-hover
+    %thead
+      %tr
+        %th Equipment
+        %th Serial ID
+        %th Extension
+        %th Approve?
+        %th Reject?
+    %tbody
+      - @lifespan_alterations.each do |a|
+        %tr
+          %td= a.detail.equipment.name
+          %td= a.detail.detail_id
+          %td= a.extension
+          %td= link_to 'Approve', "/detail_requests/approve_extension/#{a[:id]}", data: { confirm: 'Are you sure?' }
+          %td= link_to 'Deny', "/detail_requests/reject_extension/#{a[:id]}", data: { confirm: 'Are you sure?' }

@@ -1,0 +1,22 @@
+= simple_form_for(@audit) do |f|
+  = f.error_notification
+
+  .form-inputs.form-horizontal
+    = f.input :detail_id, :input_html => { :value => params[:s_id]}, :readonly => true, :as => :hidden
+    = f.input :account_id, :input_html => { :value => current_account.id }, :readonly => true, :as => :hidden
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Description: "
+      .col-sm-8
+        = f.input :description, :label => false
+    - if !@equipment.consumable
+      .form-group
+        .control-label.col-sm-4
+          = f.label "End Time: "
+        .col-sm-8
+          = f.input :end_time, :label => false
+
+  .form-actions
+    .form-group
+      .col-sm-12
+        = f.button :submit

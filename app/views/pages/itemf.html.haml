@@ -1,0 +1,49 @@
+- content_for :title, "ITEM FINANCE"
+
+.mainContent
+  %h1 Equipment: #{params[:i]}
+
+  %table.table-hover
+    %thead
+      %tr
+        %th Field
+        %th Value
+    %tbody
+      %tr
+        %td Price new
+        %td £9.99
+      %tr
+        %td Price now
+        %td £5.99
+      %tr
+        %td Date bought
+        %td 10/10/2017
+      %tr
+        %td Room
+        %td 4
+      %tr
+        %td More
+        %td No
+      %tr
+        %td Fields
+        %td Sometimes
+      %tr
+        %td Will
+        %td -5.87
+      %tr
+        %td Go
+        %td Tomorrow
+      %tr
+        %td Here
+        %td 100%
+  .centre
+    = link_to :borrowing, class: 'nav navbar-nav' do
+      = image_tag("pie.jpg")
+  %br
+  .centre
+    = link_to :borrowing, class: 'nav navbar-nav' do
+      = image_tag("pie.jpg")
+  %br
+  .centre
+    = link_to :borrowing, class: 'nav navbar-nav' do
+      = image_tag("pie.jpg")

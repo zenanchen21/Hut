@@ -1,0 +1,27 @@
+- content_for :title, "VIEW_ITEMS"
+.container
+  %h1 Listing items
+  %br
+  -# = link_to 'New Detail', new_detail_path
+  %a.btn{:href => "/details/new", :role => "button"}New Detail
+  %br
+  %br
+  %table.table-hover
+    %thead
+      %tr
+        %th Equipment ID:
+        %th Item ID:
+        %th Available
+        %th Location
+        %th
+
+    %tbody
+      - @detail.each do |detail|
+        %tr{:onclick => "window.location='/details/#{detail[:id]}';"}
+          %td= detail.equipment_id
+          %td= detail.detail_id
+          %td= detail.available
+          %td= detail.location
+          -# %td= link_to 'Show', detail
+          -# %td= link_to 'Edit', edit_detail_path(detail)
+          -# %td= link_to 'Destroy', detail, method: :delete, data: { confirm: 'Are you sure?' }

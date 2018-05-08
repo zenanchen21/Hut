@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Item:
+  = @detail_request.equipment_id
+%p
+  %b Archived new value:
+  = @detail_request.archived_new_value
+
+= link_to 'Edit', edit_detail_request_path(@detail_request)
+\|
+= link_to 'Back', detail_requests_path

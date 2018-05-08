@@ -1,0 +1,35 @@
+- content_for :title, "VIEW_#{@location.name}"
+.container
+  %p#notice= notice
+
+  %h1 Location: #{@location.name}
+  .row
+    %a.btn{:href => edit_location_path(@location), :role => "button"} Edit
+    %a.btn{:href => locations_path, :role => "button"} Back
+
+  .row
+    .small_container{:style => "float: left"}
+      .header
+        %h Some info about #{@location.name}
+      %p #{@location.info}
+
+  .row
+    %h1 Items in room
+    %table.table-hover
+      %thead
+        %tr
+          %th Serial ID
+          %th Equipment
+          %th Available
+      %tbody
+        - if @location.detail.where(available: true).where(active: true).size > 0
+          - @location.detail.where(available: true).where(active: true).each do |det|
+            %tr{:onclick => "window.location='/details/#{det[:id]}';"}
+              %td #{det.detail_id}
+              %td #{det.equipment.name}
+              %td #{det.available}
+        - else
+          %tr
+            %td
+            %td Empty
+            %td

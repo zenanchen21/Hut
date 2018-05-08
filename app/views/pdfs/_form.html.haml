@@ -1,0 +1,30 @@
+= simple_form_for(@pdfs) do |f|
+  = f.error_notification
+
+  .form-inputs.form-horizontal
+    = f.input :pdf_file_cache, :as => :hidden
+    .form-group
+      .control-label.col-sm-4
+        = f.label "PDF: "
+      .col-sm-8.text-left
+        = f.input :pdf, as: :file, :label => false
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Type: "
+      .col-sm-8.text-left
+        = f.select :pdf_type_id, @pdf_types.map{ |p| [p.name, p.id]}
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Name: "
+      .col-sm-8
+        = f.input :name, :label => false
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Description: "
+      .col-sm-8
+        = f.input :description, :label => false
+
+  .form-actions
+    .form-group
+      .col-sm-12
+      = f.button :submit

@@ -1,0 +1,34 @@
+- content_for :title, "VIEW_ACCOUNTS"
+
+.container
+  %h1 View accounts
+  %br
+  -# %p There are #{@accounts.size} accounts in the table!
+  .row
+    .form.form-inline
+      = simple_form_for:search, url: search_accounts_path, method: :post do |f|
+        = f.input :name, placeholder: 'Search Accounts', label: false
+        = f.submit 'Search', :class => "btn "
+  %br
+  %table.table-hover{}
+    %thead
+      %tr
+        %th Registration NO.
+        %th Name
+        %th Tier
+        %th Email
+    %tbody
+      - @accounts.each do |user|
+        %tr{:onclick => "window.location='/accounts/#{user[:id]}';"}
+          %td #{user.id}
+          %td #{user.givenname}
+          - if user.admin?
+            %td Admin
+          - elsif user.tech?
+            %td Technician
+          - else
+            %td User
+          %td #{user.email}
+          -# %td= link_to 'Destroy', accounts_path, method: :delete, data: { confirm: 'Are you sure?' }
+
+-# = link_to 'Add New Account', new_account_path

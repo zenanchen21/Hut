@@ -1,0 +1,58 @@
+- content_for :title, "EDIT_ITEMS"
+.container
+  %h1 Editing item
+  %br
+  .row
+    .col-sm-8.col-sm-offset-2
+      .form-inputs.form-horizontal
+        %br
+        = simple_form_for(@detail) do |f|
+          = f.error_notification
+          -# %br
+          .form-group
+            .control-label.col-sm-4
+              = f.label "Location: "
+            .col-sm-8
+              = f.input :location, :label => false
+          -# %br
+          .form-group
+            .control-label.col-sm-4
+              = f.label "Vendor Name: "
+            .col-sm-8
+              = f.input :vendor_name, :label => false
+          -# %br
+          .form-group
+            .control-label.col-sm-4
+              = f.label "Vendor Contact: "
+            .col-sm-8
+              = f.input :vendor_contact, :label => false
+          -# %br
+          .form-group
+            .control-label.col-sm-4
+              = f.label "Purchase Date: "
+            .col-sm-8.text-left
+              = f.input :purchase_date, :label => false
+          -# %br
+          .form-group
+            .control-label.col-sm-4
+              = f.label "Issue Date: "
+            .col-sm-8.text-left
+              = f.input :issue_date, :label => false
+          -# %br
+          .form-group
+            .control-label.col-sm-4
+              = f.label "Unit Cost: "
+            .col-sm-8
+              = f.input :unit_cost, :label => false
+          -# %br
+          .form-actions
+            .form-group
+              .col-sm-12
+                = f.button :submit
+
+  %br
+
+  -# = link_to 'Show', @detail
+  %a.btn{:href => "/details/#{@detail.id}", :role => "button"} Go to Detail #{@detail.id} Page
+  -# = link_to 'Back', details_path
+  %a.btn{:href => "/details", :role => "button"} Back to Details

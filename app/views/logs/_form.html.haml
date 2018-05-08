@@ -1,0 +1,9 @@
+= simple_form_for(@log) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :account_id
+    = f.input :action
+
+  .form-actions
+    = f.button :submit

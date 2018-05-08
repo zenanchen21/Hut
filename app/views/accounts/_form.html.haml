@@ -1,0 +1,12 @@
+- content_for :title, "Edit_#{@accounts.givenname}"
+= simple_form_for(@accounts) do |f|
+  = f.error_notification
+
+  .form-inputs
+    -# = f.input :id
+    -# = f.input :givenname
+    = f.input :tier, as: :radio_buttons, collection: ["User","Technician","Admin"]
+    -# = f.input :email
+
+  .form-actions
+    = f.button :submit

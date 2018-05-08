@@ -1,0 +1,69 @@
+%p#notice= notice
+- content_for :title, "ITEM_#{@detail.id}"
+.container
+  %h1 Equipment: #{@equipment.name}
+  %h1 Owner: #{@detail.owner.givenname} #{@detail.owner.sn}
+  %h1 Active: #{@detail.active}
+  %h1 Available: #{@detail.available}
+  - if !@equipment.consumable?
+    %h1 Expire Date: #{@detail.expire_date}
+  %br
+  - if ((@detail.available) && (@detail.active))
+    %a.btn{:href => "/audits/new/#{@detail.id}", :role => "button"} Add loan
+  - if current_account.tech?
+    %a.btn{:href => "/details/#{@detail.id}/edit", :role => "button"} Edit Item
+    %a.btn{:href => "/finances/#{@detail.equipment_id}/#{@detail.detail_id}", :role => "button"} View Finance
+    - if @detail.active
+      %a.btn{:href => "/details/toggle_is_archived/#{@detail.id}", :role => "button"} Deactivate
+    - else
+      %a.btn{:href => "/details/toggle_is_archived/#{@detail.id}", :role => "button"} Activate
+    %br
+    %br
+  - if current_account.tech?
+    -# .container{:style => "margin-top: 0"}
+    %h1 Loan history
+    %table.table-hover
+      %thead
+        %tr
+          %th Account ID
+          %th Date from
+          %th Date to
+          %th Description
+      %tbody
+        - if @audits.size > 0
+          - @audits.each do |aud|
+            %tr
+              %td #{aud.account_id}
+              %td #{aud.created_at}
+              %td #{aud.end_time}
+              %td #{aud.description}
+        - else
+          %tr
+            %td
+            %td
+            %td Empty
+            %td
+
+    -# .container{:style => "margin-top: 0"}
+    %h1 Reports
+    %table.table-hover
+      %thead
+        %tr
+          %th Loan ID
+          %th Description
+          %th Fixing log
+          %th Resolved by
+      %tbody
+        - if @reports.size > 0
+          - @reports.each do |rep|
+            %tr
+              %td #{rep.audit_id}
+              %td #{rep.description}
+              %td #{rep.fixing_logs}
+              %td #{rep.resolved_by}
+        - else
+          %tr
+            %td
+            %td
+            %td Empty
+            %td

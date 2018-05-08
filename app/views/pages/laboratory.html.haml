@@ -1,0 +1,12 @@
+- content_for :title, "LABORATORY"
+
+.mainContent
+  %h1 Inventory of #{params[:l]}
+  %table.table-hover
+    %thead
+      %tr
+        %th Equipment
+    %tbody
+      - for i in 1..20 do
+        %tr
+          %td Item #{i}

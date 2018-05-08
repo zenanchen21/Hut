@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Detail:
+  = @service_reminder.detail_id
+%p
+  %b Is serviced:
+  = @service_reminder.is_serviced
+
+= link_to 'Edit', edit_service_reminder_path(@service_reminder)
+\|
+= link_to 'Back', service_reminders_path

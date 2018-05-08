@@ -1,0 +1,31 @@
+- content_for :title, "VIEW_LOCATIONS"
+.container
+  %h1 View locations
+
+  .row
+    .form.form-inline
+      = simple_form_for:search, url: search_locations_path, method: :post do |f|
+        = f.input :name, placeholder: 'Search Locations', label: false
+        = f.submit 'Search', :class => "btn "
+  %br
+
+  - if current_account.tech?
+    .row
+      -# = link_to 'New Piece of Equipment', new_equipment_path
+      %a.btn{:href => "/locations/new", :role => "button"} Add New Locations
+
+  .row
+    - @locations.each do |loc|
+      .col-12.col-sm-6.col-md-4.col-lg-3
+        .card{:style => "padding-top: 0"}
+          .image-container
+            - if loc.avatar.present?
+              = image_tag loc.avatar, width: "100%"
+            - else
+              %img.card-img-top{:alt => "Card image cap", width: '100%', :src => "http://via.placeholder.com/200x200"}/
+          .card-body
+            %br
+            %br
+            %h4.card-title #{loc.id} : #{loc.name}
+            %p.card-text Available: #{loc.detail.where(available: true).where(active: true).size }
+            %a.btn.btn-primary{:href => "/locations/#{loc.id}"} View

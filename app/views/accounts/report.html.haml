@@ -1,0 +1,9 @@
+- content_for :title, "REPORT"
+
+= simple_form_for(@account) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :Type, as: :text
+
+  .form-actions
+    = f.button :submit

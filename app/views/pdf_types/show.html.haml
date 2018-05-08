@@ -1,0 +1,9 @@
+%p#notice= notice
+- content_for :title, "PDF_TYPE_#{@pdf_type.name}"
+.container
+  %p
+    %h1 Name: #{@pdf_type.name}
+
+  .row
+    %a.btn{:href => edit_pdf_type_path(@pdf_type), :role => "button"} Edit
+    %a.btn{:href => "/pdfs", :role => "button"} Back

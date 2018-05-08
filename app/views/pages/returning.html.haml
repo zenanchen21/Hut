@@ -1,0 +1,98 @@
+- content_for :title, "RETURNING"
+
+
+!!!
+%html
+.mainContent
+  %head
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "https://www.w3schools.com/w3css/4/w3.css", :rel => "stylesheet"}/
+  %body
+    .w3-container
+      .w3-bar
+      %form{:action => "home"}
+        %button.w3-button.w3-left.w3-red Back
+
+.mainContent
+  %h2{:style => "font-size:50px;color:white"}
+    Return Your Item
+
+  /%link#bootstrap-css{:href => "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css", :rel => "stylesheet"}
+  /%script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"}
+  /%script{:src => "//code.jquery.com/jquery-1.11.1.min.js"}
+  / ---- Include the above in your HEAD tag --------
+.mainContent
+  .container
+    .row
+      .col-xs-8.col-xs-offset-2
+        .input-group
+          .input-group-btn.search-panel
+            %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+              %span#search_concept Filter by
+              %span.caret
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#contains"} Contains
+              %li
+                %a{:href => "#its_equal"} It's equal
+              %li
+                %a{:href => "#greather_than"} Greather than >
+              %li
+                %a{:href => "#less_than"} Less than
+              %li.divider
+              %li
+                %a{:href => "#all"} Anything
+          %input#search_param{:name => "search_param", :type => "hidden", :value => "all"}
+            %input.form-control{:name => "x", :placeholder => "Search term...", :type => "text"}
+              %span.input-group-btn
+                %button.btn.btn-default{:type => "button"}
+                  %span.glyphicon.glyphicon-search
+
+  - users = ['Computer', 'Robot', 'Wires', 'Battery']
+.mainContent
+  %body
+    .container
+      %br
+      %br
+      %div
+        %table#tableOne.table-hover{:width => "750px", :align => "center", overflow: "auto"}
+          %thead{:align => "center", :text => "bold"}
+            %tr
+              %td
+                %input{:name => "name36", :type => "checkbox"}/
+              %td Equipment
+              %td Serial NO.
+              %td Description
+              %td Action
+          %tbody{:style => "background-color: RGBA(200,200,200,0.4);", :align => "center"}
+            - users.each do |u|
+              %tr
+                %td
+                  %input{:name => "name36", :type => "checkbox"}/
+                %td #{u}
+                %td 1
+                %td Defaultson
+                %td.text-center
+                  %a.btn.btn-info.btn-xs{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+                    %span.glyphicon.glyphicon-edit
+                    Report
+                / Modal
+                #myModal.modal.fade{:role => "dialog"}
+                  .modal-dialog
+                    / Modal content
+                    .modal-content
+                      .modal-header
+                        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+                        %font{:color => "black"} Report the Issue
+                      .modal-body
+                        %font{:color => "black"}
+                          %p
+                            %input#email.span3{:name => "eid", :placeholder => "Type the Problems", :type => "text"}/
+                        .modal-footer
+                          %button.btn.btn-primary{"data-dismiss" => "modal", :type => "button"} Submit
+
+.mainContent
+  %body
+    .container
+    %form{:action => "home"}
+      %input.btn.btn-primary.btn-lg{:type => "submit", :value => "Return"}

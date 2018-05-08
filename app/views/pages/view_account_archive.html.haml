@@ -1,0 +1,45 @@
+- content_for :title, "VIEW_ARCHIVED_ACCOUNTS"
+
+- users = ['Craig', 'Steve', 'Jack', 'Sophie', 'Luke']
+
+.mainContent
+  .container
+    %h1 View archived accounts
+    .row
+      .col-xs-8.col-xs-offset-2
+        .input-group
+          .input-group-btn.search-panel
+            %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+              %span#search_concept Filter by
+              %span.caret
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#contains"} Contains
+              %li
+                %a{:href => "#its_equal"} It's equal
+              %li
+                %a{:href => "#greather_than"} Greather than >
+              %li
+                %a{:href => "#less_than"} Less than
+              %li.divider
+              %li
+                %a{:href => "#all"} Anything
+          %input#search_param{:name => "search_param", :type => "hidden", :value => "all"}
+            %input.form-control{:name => "x", :placeholder => "Search term...", :type => "text"}
+              %span.input-group-btn
+                %button.btn.btn-default{:type => "button"}
+                  %span.glyphicon.glyphicon-search
+
+.mainContent
+  %table.table-hover{}
+    %thead
+      %tr
+        %th Firstname
+        %th Lastname
+        %th Email
+    %tbody
+      - users.each do |u|
+        %tr{:onclick => "window.location='user?u=#{u} ';"}
+          %td #{u}
+          %td Defaultson
+          %td def@somemail.com

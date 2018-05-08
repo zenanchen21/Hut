@@ -1,0 +1,21 @@
+%p#notice= notice
+%br
+%br
+%br
+%p
+  %b Loan:
+  = @report.audit_id
+%p
+  %b Description:
+  = @report.description
+-# %p
+-#   %b Fixing logs:
+-#   = @report.fixing_logs
+-# %p
+-#   %b Resolved by:
+-#   = @report.resolved_by
+
+-# = link_to 'Edit', edit_report_path(@report)
+-# \|
+%a.btn{:href => "/reports", :role => "button"} See the Report
+%a.btn{:href => "/reports/#{@report.id}/edit", :role => "button"} Edit Report

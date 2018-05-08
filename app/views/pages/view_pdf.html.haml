@@ -1,0 +1,45 @@
+- content_for :title, "VIEW_Equipment_Documentation"
+
+- pdf = ['PDF 0', 'PDF 1', 'PDF 2', 'PDF 3', 'PDF 4']
+
+.container
+  %h1 View PDFs
+  .row
+    .col-xs-8.col-xs-offset-2
+      .input-group
+        .input-group-btn.search-panel
+          %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+            %span#search_concept Filter by
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a{:href => "#contains"} Contains
+            %li
+              %a{:href => "#its_equal"} It's equal
+            %li
+              %a{:href => "#greather_than"} Greather than >
+            %li
+              %a{:href => "#less_than"} Less than
+            %li.divider
+            %li
+              %a{:href => "#all"} Anything
+        %input#search_param{:name => "search_param", :type => "hidden", :value => "all"}
+          %input.form-control{:name => "x", :placeholder => "Search term...", :type => "text"}
+            %span.input-group-btn
+              %button.btn.btn-default{:type => "button"}
+                %span.glyphicon.glyphicon-search
+
+.mainContent
+  %br
+  %table.table-hover{}
+    %thead
+      %tr
+        %th PDF
+        %th info
+        %th more info
+    %tbody
+      - pdf.each do |p|
+        %tr
+          %td #{p}
+          %td ...
+          %td ...

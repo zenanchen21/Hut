@@ -1,0 +1,18 @@
+- content_for :title, "VIEW_FINANCE"
+
+.container
+  %h1 View Finance
+
+  %br
+  %br
+  = simple_form_for:search, url: search_equipment_index_path, method: :post do |f|
+    .small_container{:style => "background-color: transparent"}
+      = f.input :name, placeholder: 'Search Items', label: false
+    = f.submit 'Search', :class => "btn "
+
+  %p Total items purchase cost of current diamond items: £££
+  %p Depreciated total cost of current diamond items: £££
+  %p -- insert scatter plot of depreciation over the items over the past year, along with total item purchase cost for each month
+
+  %p table with all items in?
+  

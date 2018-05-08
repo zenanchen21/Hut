@@ -1,0 +1,14 @@
+= simple_form_for(@pdf_type) do |f|
+  = f.error_notification
+
+  .form-inputs.form-horizontal
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Name: "
+      .col-sm-8
+        = f.input :name, :label => false
+
+  .form-actions
+    .form-group
+      .col-sm-12
+      = f.button :submit

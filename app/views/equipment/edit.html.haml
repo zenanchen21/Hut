@@ -1,0 +1,13 @@
+- content_for :title, "EDIT"
+
+.container
+  %h1 Editing equipment
+  %br
+  .row
+    .col-sm-8.col-sm-offset-2
+      = render 'form'
+  %br
+  -# = link_to 'Show', @equipment
+  %a.btn{:href => "/equipment/#{@equipment.id}", :role => "button"} Show
+  -# = link_to 'Back', equipment_index_path
+  %a.btn{:href => "/equipment", :role => "button"} Back

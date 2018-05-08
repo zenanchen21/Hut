@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  database: team07_dev
+  host: localhost
+  min_messages: warning
+  username:
+
+test:
+  adapter: postgresql
+  database: team07_test
+  host: localhost
+  min_messages: warning
+  username:

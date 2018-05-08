@@ -1,0 +1,11 @@
+- content_for :title, "Training Items"
+.container
+  %p#notice= notice
+  %h1 #{@training.name}
+  %b Description:
+  %p #{@training.description}
+
+  -# = link_to 'Edit', edit_training_path(@training)
+  %a.btn{:href => "/trainings/#{@training.id}/edit", :role => "button"} Edit
+  -# = link_to 'Back', trainings_path
+  %a.btn{:href => "/trainings", :role => "button"} Back

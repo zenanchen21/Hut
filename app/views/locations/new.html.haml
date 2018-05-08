@@ -1,0 +1,9 @@
+- content_for :title, "NEW_LOCATION"
+.container
+  %h1 New location
+  .row
+    .col-sm-8.col-sm-offset-2
+      = render 'form'
+  %br
+  .row
+    %a.btn{:href => "/locaitons", :role => "button"} Back

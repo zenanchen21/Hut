@@ -1,0 +1,21 @@
+.container
+  %h1 Pdf types
+
+  %a.btn{:href => "/pdf_types/new", :role => "button"} New Pdf Type
+  %br
+  %table.table-hover
+    %thead
+      %tr
+        %th{:style => "width: 70%"} Name
+        %th{:style => "width: 10%"}
+        %th{:style => "width: 10%"}
+        %th{:style => "width: 10%"}
+    %tbody
+      - @pdf_types.each do |pdf_type|
+        %tr
+          %td #{pdf_type.name}
+          %td= link_to 'Show', pdf_type
+          %td= link_to 'Edit', edit_pdf_type_path(pdf_type)
+          %td= link_to 'Destroy', pdf_type, method: :delete, data: { confirm: 'Are you sure?' }
+
+    %br

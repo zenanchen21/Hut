@@ -1,0 +1,27 @@
+= simple_form_for(@location) do |f|
+  = f.error_notification
+
+  .form-inputs.form-horizontal
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Name: "
+      .col-sm-8
+        = f.input :name, :label => false
+    -# %br
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Info: "
+      .col-sm-8
+        = f.input :info, :label => false
+    -# %br
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Avatar: "
+      .col-sm-8
+        = f.input :avatar, as: :file, :label => false
+        = f.hidden_field :avatar_file_cache
+    %br
+  .form-actions
+    .form-group
+      .col-sm-12.text-center
+        = f.button :submit

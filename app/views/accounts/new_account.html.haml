@@ -1,0 +1,12 @@
+- content_for :title, "ADD_ACCOUNT"
+
+= simple_form_for(@account) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :Firstname, as: :text
+    = f.input :Lastname, as: :text
+    = f.input :Type, as: :text
+    = f.input :Email, as: :email
+
+  .form-actions
+    = f.button :submit

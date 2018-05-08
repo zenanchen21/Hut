@@ -1,0 +1,86 @@
+s %p#notice= notice
+-# .container
+-#   %p
+-#     %b loan_id:
+-#     = @equipment.detail_id
+-#   %p
+-#     %b Name:
+-#     = @equipment.name
+-#
+-#   = link_to 'Edit', edit_equipment_path(@equipment)
+-#   \|
+-#   = link_to 'Back', equipment_index_path
+- content_for :title, "USER"
+.container
+  %h1 Account: #{@accounts[:givenname]}
+  .row
+    -if current_account.admin?
+      %a.btn{:href => edit_account_path(@accounts), :role => "button"} Edit
+    -if ((current_account.admin?)||((current_account.tech?)&&(!@accounts.tech?)))
+      %a.btn{:href => "/trainings/add_account/#{@accounts.id}", :role => "button"} Add training
+    %br
+    %br
+
+  .row
+    .col-sm-6
+      %table.table-hover
+        %thead
+          %tr
+            %th{:colspan => "3", :style => "border-bottom: 1px solid #fff"} Active loan's
+          %tr
+            %th{:style => "width: 33%"} ID
+            %th{:style => "width: 33%"} Name
+            %th{:style => "width: 33%"} Date to
+        %tbody
+          - if @audits.where(['end_time > ?', DateTime.now]).size > 0
+            - @audits.where(['end_time > ?', DateTime.now]).each do |aud|
+              %tr
+                %td #{aud.equipment[:id]} : #{aud.detail.detail_id}
+                %td #{aud.equipment.name}
+                %td #{aud.end_time}
+          - else
+            %tr
+              %td
+              %td Empty
+              %td
+    .col-sm-6
+      %table.table-hover
+        %thead
+          %tr
+            %th{:style => "width 80%"} Training
+            %th{:style => "width 20%"} Remove
+        %tbody
+          - (@accounts.accounts_trainings).each do |train|
+            %tr
+              %td #{train.training.name}
+              %td
+                %a{:href => "/trainings/remove_account/#{train.id}"} Remove
+
+  %h1 Loan History
+  %table.table-hover
+    %thead
+      %tr
+        %th Serial : ID
+        %th Name
+        %th Date from
+        %th Date to
+        %th Description
+        %th Report
+    %tbody
+      - if @audits.size > 0
+        - @audits.each do |aud|
+          %tr
+            %td #{aud.equipment[:id]} : #{aud.detail.detail_id}
+            %td #{aud.equipment.name}
+            %td #{aud.created_at}
+            %td #{aud.end_time}
+            %td #{aud.description}
+            %td
+              %a{:href => "/reports/new/#{aud[:id]}"} Report
+      - else
+        %tr
+          %td
+          %td
+          %td Empty
+          %td
+          %td

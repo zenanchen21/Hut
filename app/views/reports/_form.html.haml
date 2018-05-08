@@ -1,0 +1,15 @@
+= simple_form_for(@report) do |f|
+  = f.error_messages
+  = f.error_notification
+
+  .form-inputs
+
+    = f.input :id, :input_html => {:value => params[:id]}, :readonly => true, :as => :hidden
+    = f.input :fixing_logs
+    = f.input :resolved_by, :input_html => { :value => current_account.id }, :readonly => true, :as => :hidden
+    = f.input :extend_lifetime, :input_html => { :value => 0 }
+    = f.input :request_deactivation, as: :boolean, checked_value: true, unchecked_value: false
+
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,9 @@
+= simple_form_for(@service_reminder) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :detail_id, :readonly => true, :as => :hidden
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

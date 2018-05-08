@@ -1,0 +1,12 @@
+- content_for :title, "Training"
+.container
+  %h1 Editing training
+  .row
+    .col-sm-8.col-sm-offset-2
+      = render 'form'
+  %br
+  .row
+    -# = link_to 'Show', @training
+    %a.btn{:href => "/trainings/#{@training.id}", :role => "button"} Show
+    -# = link_to 'Back', trainings_path
+    %a.btn{:href => "/trainings", :role => "button"} Back

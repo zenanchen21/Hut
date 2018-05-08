@@ -1,0 +1,35 @@
+- content_for :title, "USER"
+.container
+  %h1 User: #{params[:u]}
+  .small_container{:style => "float: left"}
+    .header
+      %h Some user info maybe
+    %p  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh nulla, sagittis at imperdiet ut, pharetra nec odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec eget felis in ante aliquet cursus. Quisque ut massa accumsan orci volutpat posuere. Aliquam gravida dui eu augue gravida volutpat. Nulla faucibus ligula at ullamcorper mollis. Vestibulum ornare, risus sit amet porta tincidunt, ante enim porta lacus, eu pellentesque odio elit et magna. Nulla eu lobortis enim. Donec vitae ullamcorper ligula. Donec lacinia egestas libero gravida semper. Morbi a urna egestas, consequat mauris a, fringilla sapien. Nulla blandit felis et augue gravida, vel rutrum quam iaculis. Ut vel euismod orci. Proin pharetra nec justo eu imperdiet.
+
+  .small_container{:style => "float: right"}
+    %table.table-hover
+      %thead
+        %tr
+          %th col
+          %th col
+      %tbody
+        - for i in 1..5 do
+          %tr
+            %td ...
+            %td ...
+.container{:style => "margin-top: 0"}
+  %h1 Loan History
+  %table.table-hover
+    %thead
+      %tr
+        %th Equipment
+        %th Serial : ID
+        %th Date from
+        %th Date to
+    %tbody
+      - for i in 1..59 do
+        %tr
+          %td Equipment thing #{i}
+          %td #{i}#{i}#{i}#{i} : #{i}
+          %td 01/01/2017
+          %td 02/01/2017

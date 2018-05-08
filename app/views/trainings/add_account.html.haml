@@ -1,0 +1,11 @@
+.container
+  %h1 Add training to account ID: #{params[:a_id]}
+
+  %table.table-hover
+    %thead
+      %tr
+        %th Training
+    %tbody
+      - (@trainings).each do |trains|
+        %tr{:onclick => "window.location='/trainings/add_account/#{params[:a_id]}/#{trains[:id]}';"}
+          %td #{trains.name}

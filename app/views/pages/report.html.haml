@@ -1,0 +1,14 @@
+.modal-dialog
+  .modal-content
+    = simple_form_for @product, remote: true do |f|
+      .modal-header
+        %button.close{ type: :button, data: { dismiss: :modal } }
+          %span &times;
+        %h4.modal-title Report product
+      .modal-body
+        = f.input :name
+        = f.association :category
+        .modal-footer
+          .pull-left
+            = dismiss_modal_button
+          = f.button :submit

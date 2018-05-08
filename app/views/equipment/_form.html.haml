@@ -1,0 +1,45 @@
+= simple_form_for(@equipment) do |f|
+  = f.error_notification
+
+  .form-inputs.form-horizontal
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Name: "
+      .col-sm-8
+        = f.input :name, :label => false
+    -# %br
+    .form-group#cons
+      .control-label.col-sm-4
+        = f.label "Consumable: "
+      .col-sm-8.text-left
+        = f.input :consumable, :label => false
+    -# %br
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Description: "
+      .col-sm-8
+        = f.input :description, :label => false
+    -# %br
+    .form-group#exp
+      .control-label.col-sm-4
+        = f.label "Expectant expectancy in months:"
+      .col-sm-8
+        = f.input :expectant_expectancy, :label => false, :input_html => { :value => 0}
+    -# %br
+    .form-group
+      .control-label.col-sm-4
+        = f.label "Avatar: "
+      .col-sm-8
+        = f.input :avatar, as: :file, :label => false
+        = f.hidden_field :avatar_file_cache
+    %br
+  .form-actions
+    .form-group
+      .col-sm-12.text-center
+        = f.button :submit
+:javascript
+  var isOn = 'block'
+   $('#cons').change(function(){
+    isOn = isOn == ('none') ? 'block' : 'none'
+    $("#exp").css('display',isOn)
+  });

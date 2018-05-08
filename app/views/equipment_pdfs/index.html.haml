@@ -1,0 +1,25 @@
+.container
+  %h1 Listing Equipment PDFs
+
+  %table.table-hover
+    %thead
+      %tr
+        %th Equipment
+        %th Pdf
+        %th
+        %th
+        %th
+
+    %tbody
+      - @equipment_pdfs.each do |equipment_pdf|
+        %tr
+          %td= equipment_pdf.equipment_id
+          %td= equipment_pdf.pdf_id
+          %td= link_to 'Show', equipment_pdf
+          %td= link_to 'Edit', edit_equipment_pdf_path(equipment_pdf)
+          %td= link_to 'Destroy', equipment_pdf, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+
+  -# = link_to 'New Equipment pdf', new_equipment_pdf_path
+  %a.btn{:href => "/equipment_pdfs/new", :role => "button"} New Equipment PDF

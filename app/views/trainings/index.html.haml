@@ -1,0 +1,24 @@
+- content_for :title, "TRAININGS"
+.container
+  %h1 Training
+
+  %table.table-hover
+    %thead
+      %tr
+        %th{:style => "width: 25%"} Trainin ID.
+        %th{:style => "width: 25%"} Name
+        %th{:style => "width: 25%"} Description
+        %th{:style => "width: 8%"}
+        %th{:style => "width: 8%"}
+        %th{:style => "width: 8%"}
+    %tbody
+      - @trainings.each do |train|
+        %tr
+          %td #{train[:id]}
+          %td #{train.name}
+          %td #{train.description}
+          %td= link_to 'Show', train
+          %td= link_to 'Edit', edit_training_path(train)
+          %td= link_to 'Destroy', train, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %a.btn{:href => new_training_path, :role => "button"} New Training
